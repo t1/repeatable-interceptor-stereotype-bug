@@ -1,0 +1,9 @@
+= Bug in WELD (CDI RI)
+
+I can add multiple instances of a repeatable annotation on a method and/or on a stereotype used on that method, and the interceptor is triggered. I can freely mix both locations and then collect all annotations in my interceptor.
+
+When I try to do the same at the class level, I run into two issues:
+
+* If I add one instances of the same repeatable annotations on the class as well as on a stereotype used on the same class, I get an `IllegalArgumentException: WELD-001312: Duplicate interceptor binding type QualifierInstance` exception at deploy time. It works, if I put at least two instances of that annotation on the stereotype.
+* If I add multiple instances of one repeatable annotation to a stereotype used at a class, the interceptor is simply _not triggered_.
+
